@@ -13,9 +13,5 @@ if [[ ${#files[@]} -eq 0 ]]; then
   exit 0
 fi
 
-for f in "${files[@]}"; do
-  mv -n "$f" "$DEST/"
-  echo "Moved: $(basename "$f")"
-done
-
+mv -n "${files[@]}" "$DEST/"
 echo "Done. ${#files[@]} file(s) moved to $DEST"
