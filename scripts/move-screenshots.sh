@@ -1,11 +1,11 @@
-#!/usr/bin/env bash
+#!/bin/zsh
 # Moves files whose names start with "Screenshot" from ~/Desktop into ~/Screenshots/.
 set -euo pipefail
 
 DEST="$HOME/Screenshots"
 mkdir -p "$DEST"
 
-shopt -s nullglob
+setopt nullglob
 files=("$HOME/Desktop/Screenshot"*)
 
 if [[ ${#files[@]} -eq 0 ]]; then
