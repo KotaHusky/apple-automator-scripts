@@ -1,22 +1,32 @@
 # apple-automator-scripts
 
-Shell scripts for macOS automation, designed to run via Automator's "Run Shell Script" action or directly from the terminal.
+macOS automation scripts and Automator Folder Action workflows.
 
-## Scripts
+## One-click install
 
-| Script | Description |
-|--------|-------------|
-| `scripts/move-screenshots.sh` | Moves files starting with "Screenshot" from the Desktop into `~/Screenshots/` |
+```bash
+bash install.sh
+```
 
-## Usage
+Copies every workflow in `workflows/` to `~/Library/Workflows/Applications/Folder Actions/` and attaches each one to its configured folder via AppleScript. If macOS prompts for Automation access, click **Allow**.
 
-Each script can be run directly:
+## Workflows
+
+| Workflow | Trigger | Description |
+|----------|---------|-------------|
+| `move-screenshots.workflow` | Files added to Desktop | Moves `Screenshot*` files from Desktop into `~/Screenshots/` |
+
+## Standalone scripts
+
+Each workflow also has a plain shell script equivalent in `scripts/` for running directly from the terminal:
 
 ```bash
 bash scripts/move-screenshots.sh
 ```
 
-Or wired into an Automator workflow:
-1. Open Automator → New Document → Application (or Folder Action)
-2. Add a **Run Shell Script** action
-3. Paste the script contents (or call `bash /path/to/script.sh`)
+## Adding a new workflow
+
+1. Create your Folder Action in Automator and save it as a `.workflow` file
+2. Copy the bundle into `workflows/`
+3. Set `folderActionFolderPath` in `document.wflow` → `workflowMetaData` to your target folder (e.g. `~/Desktop`)
+4. Run `bash install.sh` — it picks up all workflows automatically
